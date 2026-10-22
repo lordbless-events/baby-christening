@@ -198,8 +198,8 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between items-center py-6 px-4">
 
-    <!-- Audio Element linking to original song.mp3 file -->
-    <audio id="bgMusic" loop src="song.mp3"></audio>
+    <!-- Audio Element linking to song.mp3 -->
+    <audio id="bgMusic" loop preload="auto" src="song.mp3"></audio>
 
     <!-- Header Audio Bar -->
     <header class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[92%] max-w-md glass-card rounded-full py-2.5 px-5 flex items-center justify-between border border-gold-400/40">
@@ -598,6 +598,36 @@
     <script>
         const bgAudio = document.getElementById('bgMusic');
         let isPlaying = false;
+        let synthAudioCtx = null;
+        let melodyInterval = null;
+
+        // Fallback Web Audio Synthesizer if MP3 is missing/delayed
+        function startSynthAudioFallback() {
+            if (!synthAudioCtx) {
+                synthAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (synthAudioCtx.state === 'suspended') synthAudioCtx.resume();
+
+            const notes = [261.63, 329.63, 392.00, 523.25, 440.00, 392.00, 329.63];
+            let idx = 0;
+            melodyInterval = setInterval(() => {
+                if (isPlaying && synthAudioCtx) {
+                    try {
+                        const osc = synthAudioCtx.createOscillator();
+                        const gain = synthAudioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(notes[idx], synthAudioCtx.currentTime);
+                        gain.gain.setValueAtTime(0.08, synthAudioCtx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.0001, synthAudioCtx.currentTime + 0.6);
+                        osc.connect(gain);
+                        gain.connect(synthAudioCtx.destination);
+                        osc.start();
+                        osc.stop(synthAudioCtx.currentTime + 0.6);
+                        idx = (idx + 1) % notes.length;
+                    } catch(e){}
+                }
+            }, 500);
+        }
 
         function playOriginalAudio() {
             if (bgAudio) {
@@ -606,7 +636,11 @@
                     document.getElementById('audioIcon').className = "fas fa-pause text-sm text-gold-300";
                     document.getElementById('eqVisualizer').classList.remove('opacity-40');
                 }).catch(e => {
-                    console.log("Audio playback blocked until user gesture.");
+                    // Fallback to synthesizer if MP3 load fails
+                    isPlaying = true;
+                    startSynthAudioFallback();
+                    document.getElementById('audioIcon').className = "fas fa-pause text-sm text-gold-300";
+                    document.getElementById('eqVisualizer').classList.remove('opacity-40');
                 });
             }
         }
@@ -617,7 +651,7 @@
                 env.classList.add('open');
                 document.getElementById('envelopeInstructions').innerText = "✨ Royal Envelope Unsealed! ✨";
                 
-                // Play song.mp3
+                // Play audio
                 playOriginalAudio();
 
                 confetti({
@@ -640,12 +674,17 @@
             const eq = document.getElementById('eqVisualizer');
 
             if (!isPlaying) {
-                bgAudio.play();
+                if (bgAudio) {
+                    bgAudio.play().catch(() => startSynthAudioFallback());
+                } else {
+                    startSynthAudioFallback();
+                }
                 isPlaying = true;
                 icon.className = "fas fa-pause text-sm text-gold-300";
                 eq.classList.remove('opacity-40');
             } else {
-                bgAudio.pause();
+                if (bgAudio) bgAudio.pause();
+                if (melodyInterval) clearInterval(melodyInterval);
                 isPlaying = false;
                 icon.className = "fas fa-music text-sm text-gold-300";
                 eq.classList.add('opacity-40');
@@ -744,13 +783,18 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Vote Board
-        let nameVotes = { "Ethan": 14, "Ethaniel": 8, "Nathan": 6, "Solomon": 4 };
+        // Vote Board - Completely Empty for Real Guest Inputs
+        let nameVotes = {};
 
         function renderVotes() {
             const board = document.getElementById('voteBoard');
             board.innerHTML = '';
             const total = Object.values(nameVotes).reduce((a, b) => a + b, 0);
+
+            if (total === 0) {
+                board.innerHTML = `<p class="text-xs text-slate-400 italic text-center py-2">No votes submitted yet. Be the first to guess!</p>`;
+                return;
+            }
 
             Object.entries(nameVotes).forEach(([name, count]) => {
                 const pct = Math.round((count / total) * 100);
@@ -792,20 +836,20 @@
         }
 
         // RSVP & Prayer Wall
-        const defaultPrayers = [
-            { name: "Auntie Mary & Family", wish: "May the Lord bless and keep the new baby boy in Jesus' name!" },
-            { name: "Deacon Samuel", wish: "Congratulations Mr. & Mrs. Aware! God's grace abounds." }
-        ];
-
         function getStoredRSVPs() {
             const stored = localStorage.getItem('aware_baby_rsvps');
-            return stored ? JSON.parse(stored) : defaultPrayers;
+            return stored ? JSON.parse(stored) : [];
         }
 
         function renderPrayerWall() {
             const container = document.getElementById('prayerWallContainer');
             const items = getStoredRSVPs();
             container.innerHTML = '';
+
+            if (items.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-400 italic text-center py-2">No prayer wishes submitted yet. Be the first to leave a blessing!</p>`;
+                return;
+            }
 
             items.forEach(item => {
                 const div = document.createElement('div');
@@ -846,9 +890,13 @@
             if (pin === "2026" || pin === "1234") {
                 const list = getStoredRSVPs();
                 let msg = "--- HOST RSVP GUEST LIST ---\n\n";
-                list.forEach((r, i) => {
-                    msg += `${i+1}. ${r.name} (${r.phone}) - ${r.attending}\n   Wish: ${r.wish}\n\n`;
-                });
+                if (list.length === 0) {
+                    msg += "No guest RSVPs received yet.";
+                } else {
+                    list.forEach((r, i) => {
+                        msg += `${i+1}. ${r.name} (${r.phone}) - ${r.attending}\n   Wish: ${r.wish}\n\n`;
+                    });
+                }
                 alert(msg);
             } else if (pin !== null) {
                 alert("Incorrect Passcode.");
