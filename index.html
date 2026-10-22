@@ -27,10 +27,11 @@
             theme: {
                 extend: {
                     colors: {
-                        navy: {
-                            800: '#0a1324',
-                            900: '#040914',
-                            950: '#02050b',
+                        royal: {
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            950: '#0f172a',
                         },
                         gold: {
                             100: '#fff5d6',
@@ -53,28 +54,32 @@
     </script>
 
     <style>
+        /* Bright Royal Blue & White Palette */
         body {
-            background-color: #02050b;
-            color: #f8fafc;
+            background-color: #0f2b5c;
+            color: #0f172a;
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
-                radial-gradient(circle at 50% 100%, rgba(2, 132, 199, 0.08) 0%, transparent 60%);
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.3) 0%, transparent 60%),
+                radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.2) 0%, transparent 60%),
+                linear-gradient(180deg, #0b1f42 0%, #1a3a70 50%, #0f2b5c 100%);
         }
 
         .gold-gradient-text {
-            background: linear-gradient(135deg, #ffffff 0%, #f7e2a3 30%, #d4af37 70%, #aa7c11 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f7e2a3 40%, #d4af37 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
+        /* Bright Crisp Glass Cards */
         .glass-card {
-            background: rgba(10, 19, 36, 0.78);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(212, 175, 55, 0.28);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(212, 175, 55, 0.45);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            color: #0f172a;
         }
 
         /* Envelope CSS Animation */
@@ -82,12 +87,12 @@
             position: relative;
             width: 300px;
             height: 200px;
-            background: #0a1324;
+            background: #1e3a8a;
             border-radius: 12px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(212, 175, 55, 0.4);
             perspective: 1000px;
             cursor: pointer;
-            border: 1px solid rgba(212, 175, 55, 0.4);
+            border: 2px solid #d4af37;
             margin: 0 auto;
         }
 
@@ -99,11 +104,11 @@
             height: 0;
             border-left: 150px solid transparent;
             border-right: 150px solid transparent;
-            border-top: 110px solid #101c36;
+            border-top: 110px solid #2563eb;
             transform-origin: top;
             transition: transform 0.8s ease-in-out, z-index 0.8s ease-in-out;
             z-index: 5;
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
         }
 
         .envelope-wrapper.open .envelope-flap {
@@ -123,7 +128,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.4);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
             z-index: 10;
             transition: opacity 0.5s ease, transform 0.5s ease;
             border: 2px solid #8a6207;
@@ -142,7 +147,7 @@
             height: 280px;
             margin: 0 auto;
             border-radius: 50%;
-            box-shadow: 0 0 45px rgba(212, 175, 55, 0.35);
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.4);
         }
 
         @media (min-width: 640px) {
@@ -169,7 +174,7 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: radial-gradient(circle, #0369a1 0%, #0a1324 85%);
+            background: radial-gradient(circle, #0284c7 0%, #1e3a8a 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -177,6 +182,7 @@
             padding: 24px;
             text-align: center;
             border: 3px solid #d4af37;
+            color: #ffffff;
         }
 
         .eq-bar {
@@ -202,14 +208,14 @@
     <audio id="bgMusic" loop preload="auto" src="song.mp3"></audio>
 
     <!-- Header Audio Bar -->
-    <header class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[92%] max-w-md glass-card rounded-full py-2.5 px-5 flex items-center justify-between border border-gold-400/40">
+    <header class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[92%] max-w-md bg-white/90 backdrop-blur-md rounded-full py-2.5 px-5 flex items-center justify-between border-2 border-gold-400 shadow-xl">
         <div class="flex items-center space-x-3">
-            <button id="audioToggleBtn" onclick="toggleAudio(event)" class="w-10 h-10 rounded-full bg-gold-400/20 text-gold-300 flex items-center justify-center hover:bg-gold-400/40 transition">
+            <button id="audioToggleBtn" onclick="toggleAudio(event)" class="w-10 h-10 rounded-full bg-royal-900 text-gold-300 flex items-center justify-center hover:bg-royal-800 transition shadow-md">
                 <i id="audioIcon" class="fas fa-music text-sm"></i>
             </button>
             <div class="text-left">
-                <p class="text-[9px] uppercase tracking-widest text-gold-300 font-bold">Worship Melody</p>
-                <p class="text-xs text-slate-100 font-semibold truncate max-w-[180px]">Million Little Miracles</p>
+                <p class="text-[9px] uppercase tracking-widest text-royal-900 font-bold">Worship Melody</p>
+                <p class="text-xs text-slate-800 font-semibold truncate max-w-[180px]">Million Little Miracles</p>
             </div>
         </div>
         <div id="eqVisualizer" class="flex items-center space-x-1 opacity-40">
@@ -225,14 +231,14 @@
 
         <!-- Banner Header -->
         <div class="text-center space-y-3">
-            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/40">
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-gold-300 shadow-md">
                 <i class="fas fa-crown text-gold-300 text-xs"></i>
-                <span class="text-gold-200 text-[10px] sm:text-xs tracking-widest font-bold uppercase">Royal Invitation</span>
+                <span class="text-white text-[10px] sm:text-xs tracking-widest font-bold uppercase">Royal Invitation</span>
             </div>
-            <h1 class="text-3xl sm:text-4xl font-black font-cinzel gold-gradient-text tracking-wide leading-tight">
+            <h1 class="text-3xl sm:text-4xl font-black font-cinzel gold-gradient-text tracking-wide leading-tight drop-shadow-md">
                 MR. & MRS. EMMANUEL AWARE
             </h1>
-            <p class="text-xs sm:text-sm text-slate-300 font-serif italic max-w-md mx-auto leading-relaxed">
+            <p class="text-xs sm:text-sm text-sky-100 font-serif italic max-w-md mx-auto leading-relaxed">
                 Cordially request the honour of your presence to celebrate...
             </p>
         </div>
@@ -240,8 +246,8 @@
         <!-- STAGE 1: Interactive Envelope Entry -->
         <section id="envelopeSection" class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-6">
             <div class="space-y-1.5">
-                <h2 class="text-lg font-bold font-cinzel text-white">Royal Wax Seal</h2>
-                <p class="text-xs text-slate-400">Tap or click the gold wax seal to open the envelope!</p>
+                <h2 class="text-xl font-bold font-cinzel text-royal-950">Royal Wax Seal</h2>
+                <p class="text-xs text-slate-600 font-medium">Tap or click the gold wax seal to open the envelope!</p>
             </div>
 
             <div id="envelope" class="envelope-wrapper" onclick="openEnvelope()">
@@ -250,13 +256,13 @@
                     <i class="fas fa-crown text-navy-950 text-xl"></i>
                 </div>
                 <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-                    <span class="text-[10px] uppercase tracking-widest text-gold-300 font-bold">Royal Envelope</span>
-                    <p class="text-xs text-slate-200 font-serif italic mt-1">Tap seal to unseal</p>
+                    <span class="text-[10px] uppercase tracking-widest text-gold-200 font-bold">Royal Envelope</span>
+                    <p class="text-xs text-white font-serif italic mt-1">Tap seal to unseal</p>
                 </div>
             </div>
 
-            <p id="envelopeInstructions" class="text-xs text-gold-300/90 animate-pulse font-medium">
-                <i class="fas fa-hand-pointer mr-1.5"></i> Tap the royal wax seal to open
+            <p id="envelopeInstructions" class="text-xs text-royal-900 animate-pulse font-bold">
+                <i class="fas fa-hand-pointer mr-1.5 text-gold-600"></i> Tap the royal wax seal to open
             </p>
         </section>
 
@@ -266,55 +272,55 @@
             <!-- Gold Coin Scratch Section -->
             <section id="scratchSection" class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-6">
                 <div class="space-y-1.5">
-                    <h2 class="text-lg font-bold font-cinzel text-white">Interactive Gold Seal</h2>
-                    <p class="text-xs text-slate-400">Scratch or rub the gold coin to unveil the announcement!</p>
+                    <h2 class="text-xl font-bold font-cinzel text-royal-950">Interactive Gold Seal</h2>
+                    <p class="text-xs text-slate-600 font-medium">Scratch or rub the gold coin to unveil the announcement!</p>
                 </div>
 
                 <div class="scratch-container">
                     <canvas id="scratchCanvas"></canvas>
                     <div class="hidden-reveal-content">
-                        <div class="w-12 h-12 rounded-full bg-gold-400/20 text-gold-300 flex items-center justify-center mb-2 border border-gold-400/40">
+                        <div class="w-12 h-12 rounded-full bg-white/20 text-gold-200 flex items-center justify-center mb-2 border border-gold-300">
                             <i class="fas fa-baby text-2xl"></i>
                         </div>
-                        <span class="text-[10px] uppercase tracking-widest text-sky-300 font-bold">Official Announcement</span>
+                        <span class="text-[10px] uppercase tracking-widest text-sky-200 font-bold">Official Announcement</span>
                         <h3 class="text-xl font-black font-cinzel text-white my-1">IT'S A BABY BOY!</h3>
-                        <p class="text-[11px] text-slate-200 font-medium">Baby Christening!</p>
-                        <span class="mt-3 px-3 py-1 bg-gold-400/20 border border-gold-400/40 text-gold-200 text-[10px] rounded-full font-bold">
+                        <p class="text-[11px] text-sky-100 font-medium">Baby Christening!</p>
+                        <span class="mt-3 px-3 py-1 bg-gold-400 text-royal-950 text-[10px] rounded-full font-bold">
                             Scroll Down For Event Details
                         </span>
                     </div>
                 </div>
                 
-                <p id="scratchInstructions" class="text-xs text-gold-300/90 animate-pulse font-medium">
-                    <i class="fas fa-hand-pointer mr-1.5"></i> Scratch 35% of the seal surface to reveal details
+                <p id="scratchInstructions" class="text-xs text-royal-900 animate-pulse font-bold">
+                    <i class="fas fa-hand-pointer mr-1.5 text-gold-600"></i> Scratch 35% of the seal surface to reveal details
                 </p>
             </section>
 
             <!-- Scripture & Live Countdown -->
-            <section class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-6 border-l-4 border-l-gold-400">
-                <blockquote class="text-xs sm:text-sm italic font-serif text-slate-200 max-w-md mx-auto leading-relaxed">
+            <section class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-6 border-l-8 border-l-gold-500">
+                <blockquote class="text-xs sm:text-sm italic font-serif text-slate-800 max-w-md mx-auto leading-relaxed">
                     "For this child I prayed, and the LORD has granted me my petition which I asked of Him."
-                    <footer class="mt-2 text-gold-300 font-cinzel text-xs font-bold tracking-wider">— 1 Samuel 1:27</footer>
+                    <footer class="mt-2 text-royal-900 font-cinzel text-xs font-bold tracking-wider">— 1 Samuel 1:27</footer>
                 </blockquote>
 
-                <div class="space-y-3 pt-2 border-t border-slate-800">
-                    <span class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Event Countdown</span>
+                <div class="space-y-3 pt-4 border-t border-slate-200">
+                    <span class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Event Countdown</span>
                     <div class="grid grid-cols-4 gap-2.5 text-center">
-                        <div class="bg-navy-900/90 border border-gold-400/30 p-2.5 sm:p-3.5 rounded-2xl">
-                            <span id="cdDays" class="block text-xl sm:text-2xl font-black font-cinzel text-gold-200">00</span>
-                            <span class="text-[9px] uppercase text-slate-400 font-semibold">Days</span>
+                        <div class="bg-royal-900 text-white p-2.5 sm:p-3.5 rounded-2xl border border-gold-400 shadow-md">
+                            <span id="cdDays" class="block text-xl sm:text-2xl font-black font-cinzel text-gold-300">00</span>
+                            <span class="text-[9px] uppercase text-sky-200 font-semibold">Days</span>
                         </div>
-                        <div class="bg-navy-900/90 border border-gold-400/30 p-2.5 sm:p-3.5 rounded-2xl">
-                            <span id="cdHours" class="block text-xl sm:text-2xl font-black font-cinzel text-gold-200">00</span>
-                            <span class="text-[9px] uppercase text-slate-400 font-semibold">Hours</span>
+                        <div class="bg-royal-900 text-white p-2.5 sm:p-3.5 rounded-2xl border border-gold-400 shadow-md">
+                            <span id="cdHours" class="block text-xl sm:text-2xl font-black font-cinzel text-gold-300">00</span>
+                            <span class="text-[9px] uppercase text-sky-200 font-semibold">Hours</span>
                         </div>
-                        <div class="bg-navy-900/90 border border-gold-400/30 p-2.5 sm:p-3.5 rounded-2xl">
-                            <span id="cdMins" class="block text-xl sm:text-2xl font-black font-cinzel text-gold-200">00</span>
-                            <span class="text-[9px] uppercase text-slate-400 font-semibold">Mins</span>
+                        <div class="bg-royal-900 text-white p-2.5 sm:p-3.5 rounded-2xl border border-gold-400 shadow-md">
+                            <span id="cdMins" class="block text-xl sm:text-2xl font-black font-cinzel text-gold-300">00</span>
+                            <span class="text-[9px] uppercase text-sky-200 font-semibold">Mins</span>
                         </div>
-                        <div class="bg-navy-900/90 border border-gold-400/30 p-2.5 sm:p-3.5 rounded-2xl">
-                            <span id="cdSecs" class="block text-xl sm:text-2xl font-black font-cinzel text-gold-200">00</span>
-                            <span class="text-[9px] uppercase text-slate-400 font-semibold">Secs</span>
+                        <div class="bg-royal-900 text-white p-2.5 sm:p-3.5 rounded-2xl border border-gold-400 shadow-md">
+                            <span id="cdSecs" class="block text-xl sm:text-2xl font-black font-cinzel text-gold-300">00</span>
+                            <span class="text-[9px] uppercase text-sky-200 font-semibold">Secs</span>
                         </div>
                     </div>
                 </div>
@@ -323,53 +329,53 @@
             <!-- Event Date & Venues -->
             <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-6">
                 <div class="text-center space-y-1">
-                    <span class="text-[10px] uppercase tracking-widest font-bold text-gold-300">Date & Location Guide</span>
-                    <h2 class="text-2xl font-bold font-cinzel gold-gradient-text">Event Venues</h2>
-                    <p class="text-xs text-slate-300 font-semibold">Sunday, 01 - NOV - 2026 @ 8:30 AM GMT</p>
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-royal-900">Date & Location Guide</span>
+                    <h2 class="text-2xl font-bold font-cinzel text-royal-950">Event Venues</h2>
+                    <p class="text-xs text-slate-700 font-bold">Sunday, 01 - NOV - 2026 @ 8:30 AM GMT</p>
                 </div>
 
                 <div class="space-y-4">
-                    <div class="p-4 sm:p-5 rounded-2xl bg-navy-900/80 border border-sky-500/30 space-y-3">
+                    <div class="p-4 sm:p-5 rounded-2xl bg-sky-50 border border-sky-200 space-y-3">
                         <div class="flex items-start space-x-3.5">
-                            <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center flex-shrink-0 border border-sky-400/30">
+                            <div class="w-10 h-10 rounded-xl bg-royal-900 text-gold-300 flex items-center justify-center flex-shrink-0 shadow-md">
                                 <i class="fas fa-church text-base"></i>
                             </div>
                             <div class="flex-1 space-y-0.5">
-                                <span class="text-[10px] uppercase tracking-widest font-bold text-sky-400">1. Divine Service & Christening (8:30 AM)</span>
-                                <h3 class="text-base font-bold text-white">Hilltop Chapel</h3>
-                                <p class="text-xs text-slate-300">Swanlake, North-Kaneshie, Accra - Ghana</p>
+                                <span class="text-[10px] uppercase tracking-widest font-bold text-royal-900">1. Divine Service & Christening (8:30 AM)</span>
+                                <h3 class="text-base font-bold text-slate-900">Hilltop Chapel</h3>
+                                <p class="text-xs text-slate-600 font-medium">Swanlake, North-Kaneshie, Accra - Ghana</p>
                             </div>
                         </div>
-                        <div class="pt-2 flex flex-wrap gap-2 border-t border-slate-700/60">
-                            <a href="https://maps.google.com/?q=Hilltop+Chapel+Swanlake+North+Kaneshie+Accra" target="_blank" class="flex-1 py-2 px-3 rounded-xl bg-sky-500/20 border border-sky-400/40 text-sky-300 text-xs font-semibold flex items-center justify-center space-x-1.5 hover:bg-sky-500/30 transition">
-                                <i class="fas fa-map-marked-alt text-[11px]"></i>
+                        <div class="pt-2 flex flex-wrap gap-2 border-t border-sky-200">
+                            <a href="https://maps.google.com/?q=Hilltop+Chapel+Swanlake+North+Kaneshie+Accra" target="_blank" class="flex-1 py-2 px-3 rounded-xl bg-royal-900 text-white text-xs font-semibold flex items-center justify-center space-x-1.5 hover:bg-royal-800 transition">
+                                <i class="fas fa-map-marked-alt text-[11px] text-gold-300"></i>
                                 <span>Google Maps</span>
                             </a>
-                            <a href="https://m.uber.com/ul/?action=setPickup&dropoff[formatted_address]=Hilltop%20Chapel%2C%20Swanlake%2C%20North%20Kaneshie%2C%20Accra" target="_blank" class="flex-1 py-2 px-3 rounded-xl bg-slate-800 border border-slate-600 text-slate-200 text-xs font-semibold flex items-center justify-center space-x-1.5 hover:bg-slate-700 transition">
-                                <i class="fas fa-car text-[11px]"></i>
+                            <a href="https://m.uber.com/ul/?action=setPickup&dropoff[formatted_address]=Hilltop%20Chapel%2C%20Swanlake%2C%20North%20Kaneshie%2C%20Accra" target="_blank" class="flex-1 py-2 px-3 rounded-xl bg-slate-800 text-white text-xs font-semibold flex items-center justify-center space-x-1.5 hover:bg-slate-700 transition">
+                                <i class="fas fa-car text-[11px] text-sky-300"></i>
                                 <span>Ride Uber / Bolt</span>
                             </a>
                         </div>
                     </div>
 
-                    <div class="p-4 sm:p-5 rounded-2xl bg-navy-900/80 border border-gold-400/30 space-y-3">
+                    <div class="p-4 sm:p-5 rounded-2xl bg-amber-50/60 border border-amber-200 space-y-3">
                         <div class="flex items-start space-x-3.5">
-                            <div class="w-10 h-10 rounded-xl bg-gold-400/20 text-gold-300 flex items-center justify-center flex-shrink-0 border border-gold-400/30">
+                            <div class="w-10 h-10 rounded-xl bg-gold-500 text-white flex items-center justify-center flex-shrink-0 shadow-md">
                                 <i class="fas fa-glass-cheers text-base"></i>
                             </div>
                             <div class="flex-1 space-y-0.5">
-                                <span class="text-[10px] uppercase tracking-widest font-bold text-gold-300">2. Reception (Following Service)</span>
-                                <h3 class="text-base font-bold text-white">ES AXIS GLOBAL LTD</h3>
-                                <p class="text-xs text-slate-300">North-Kaneshie, Accra - Ghana</p>
+                                <span class="text-[10px] uppercase tracking-widest font-bold text-amber-800">2. Reception (Following Service)</span>
+                                <h3 class="text-base font-bold text-slate-900">ES AXIS GLOBAL LTD</h3>
+                                <p class="text-xs text-slate-600 font-medium">North-Kaneshie, Accra - Ghana</p>
                             </div>
                         </div>
-                        <div class="pt-2 flex flex-wrap gap-2 border-t border-slate-700/60">
-                            <a href="https://maps.google.com/?q=ES+AXIS+GLOBAL+LTD+North+Kaneshie+Accra" target="_blank" class="flex-1 py-2 px-3 rounded-xl bg-gold-400/20 border border-gold-400/40 text-gold-200 text-xs font-semibold flex items-center justify-center space-x-1.5 hover:bg-gold-400/30 transition">
+                        <div class="pt-2 flex flex-wrap gap-2 border-t border-amber-200">
+                            <a href="https://maps.google.com/?q=ES+AXIS+GLOBAL+LTD+North+Kaneshie+Accra" target="_blank" class="flex-1 py-2 px-3 rounded-xl bg-gold-500 text-white text-xs font-semibold flex items-center justify-center space-x-1.5 hover:bg-gold-600 transition">
                                 <i class="fas fa-map-marked-alt text-[11px]"></i>
                                 <span>Google Maps</span>
                             </a>
-                            <a href="https://m.uber.com/ul/?action=setPickup&dropoff[formatted_address]=ES%20AXIS%20GLOBAL%20LTD%2C%20North%20Kaneshie%2C%20Accra" target="_blank" class="flex-1 py-2 px-3 rounded-xl bg-slate-800 border border-slate-600 text-slate-200 text-xs font-semibold flex items-center justify-center space-x-1.5 hover:bg-slate-700 transition">
-                                <i class="fas fa-car text-[11px]"></i>
+                            <a href="https://m.uber.com/ul/?action=setPickup&dropoff[formatted_address]=ES%20AXIS%20GLOBAL%20LTD%2C%20North%20Kaneshie%2C%20Accra" target="_blank" class="flex-1 py-2 px-3 rounded-xl bg-slate-800 text-white text-xs font-semibold flex items-center justify-center space-x-1.5 hover:bg-slate-700 transition">
+                                <i class="fas fa-car text-[11px] text-amber-300"></i>
                                 <span>Ride Uber / Bolt</span>
                             </a>
                         </div>
@@ -380,18 +386,18 @@
             <!-- 3-Part Program Flow -->
             <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-6">
                 <div class="text-center space-y-1">
-                    <span class="text-[10px] uppercase tracking-widest font-bold text-gold-300">Schedule Of Events</span>
-                    <h2 class="text-2xl font-bold font-cinzel text-white">Order of Service & Reception</h2>
-                    <p class="text-xs text-slate-400">Complete 3-Part Program Flow</p>
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-royal-900">Schedule Of Events</span>
+                    <h2 class="text-2xl font-bold font-cinzel text-royal-950">Order of Service & Reception</h2>
+                    <p class="text-xs text-slate-500 font-medium">Complete 3-Part Program Flow</p>
                 </div>
 
                 <div class="space-y-6 text-xs">
                     <div class="space-y-2">
-                        <div class="flex items-center space-x-2 border-b border-sky-500/30 pb-1.5">
-                            <span class="w-2 h-2 rounded-full bg-sky-400"></span>
-                            <h3 class="font-bold text-sky-400 uppercase tracking-widest text-[11px]">Part 1: Church Service</h3>
+                        <div class="flex items-center space-x-2 border-b border-royal-200 pb-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-royal-700"></span>
+                            <h3 class="font-bold text-royal-900 uppercase tracking-widest text-[11px]">Part 1: Church Service</h3>
                         </div>
-                        <ol class="space-y-1.5 text-slate-300 pl-4 list-decimal">
+                        <ol class="space-y-1.5 text-slate-700 font-medium pl-4 list-decimal">
                             <li>Intercessory Prayers</li>
                             <li>Praises & Worship</li>
                             <li>Song Ministration</li>
@@ -402,11 +408,11 @@
                     </div>
 
                     <div class="space-y-2">
-                        <div class="flex items-center space-x-2 border-b border-gold-400/30 pb-1.5">
-                            <span class="w-2 h-2 rounded-full bg-gold-300"></span>
-                            <h3 class="font-bold text-gold-300 uppercase tracking-widest text-[11px]">Part 2: Baby Christening & Church Closing</h3>
+                        <div class="flex items-center space-x-2 border-b border-amber-200 pb-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-gold-500"></span>
+                            <h3 class="font-bold text-amber-800 uppercase tracking-widest text-[11px]">Part 2: Baby Christening & Church Closing</h3>
                         </div>
-                        <ol start="7" class="space-y-1.5 text-slate-300 pl-4 list-decimal">
+                        <ol start="7" class="space-y-1.5 text-slate-700 font-medium pl-4 list-decimal">
                             <li>Song Ministration</li>
                             <li>Baby Christening</li>
                             <li>Prayers for Baby, Parents & Family</li>
@@ -419,11 +425,11 @@
                     </div>
 
                     <div class="space-y-2">
-                        <div class="flex items-center space-x-2 border-b border-emerald-500/30 pb-1.5">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                            <h3 class="font-bold text-emerald-400 uppercase tracking-widest text-[11px]">Part 3: Reception (ES AXIS GLOBAL LTD)</h3>
+                        <div class="flex items-center space-x-2 border-b border-emerald-200 pb-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                            <h3 class="font-bold text-emerald-800 uppercase tracking-widest text-[11px]">Part 3: Reception (ES AXIS GLOBAL LTD)</h3>
                         </div>
-                        <ol start="15" class="space-y-1.5 text-slate-300 pl-4 list-decimal">
+                        <ol start="15" class="space-y-1.5 text-slate-700 font-medium pl-4 list-decimal">
                             <li>Arrival of Guests & Red Carpet Welcome</li>
                             <li>Grand Entrance of Mr. & Mrs. Emmanuel Aware & Baby Boy</li>
                             <li>Opening Prayer & Welcome Toast</li>
@@ -437,20 +443,19 @@
                 </div>
             </section>
 
-            <!-- Church Protocol Guide -->
+            <!-- Church Protocol Guide (No Dress Code) -->
             <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-4">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-gold-400/20 text-gold-300 flex items-center justify-center flex-shrink-0 border border-gold-400/30">
+                    <div class="w-10 h-10 rounded-xl bg-royal-900 text-gold-300 flex items-center justify-center flex-shrink-0 shadow-md">
                         <i class="fas fa-clipboard-check"></i>
                     </div>
                     <div>
-                        <h3 class="text-base font-bold text-white font-cinzel">Church Guest Protocol</h3>
-                        <p class="text-[11px] text-slate-400">Hilltop Chapel, Swanlake</p>
+                        <h3 class="text-base font-bold text-royal-950 font-cinzel">Church Guest Protocol</h3>
+                        <p class="text-[11px] text-slate-500">Hilltop Chapel, Swanlake</p>
                     </div>
                 </div>
-                <ul class="text-xs text-slate-300 space-y-2.5 list-disc pl-5 leading-relaxed">
+                <ul class="text-xs text-slate-700 font-medium space-y-2.5 list-disc pl-5 leading-relaxed">
                     <li><strong>Seating Protocol:</strong> Guests are kindly encouraged to be seated by <strong>8:15 AM GMT</strong> before intercessory prayers begin prompt at 8:30 AM.</li>
-                    <li><strong>Dress Code:</strong> Traditional All-White Attire with touches of Gold or Kente.</li>
                     <li><strong>On-Site Parking:</strong> Compound parking available at Hilltop Chapel, directed by ushers upon arrival.</li>
                 </ul>
             </section>
@@ -458,453 +463,50 @@
             <!-- Riddle Name Voting Game -->
             <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-5">
                 <div class="text-center space-y-1">
-                    <span class="text-[10px] uppercase tracking-widest font-bold text-gold-300">Interactive Mini-Game</span>
-                    <h2 class="text-xl font-bold font-cinzel text-white">Guess the Christian Name!</h2>
-                    <p class="text-xs text-slate-400">Can you solve the biblical riddle?</p>
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-royal-900">Interactive Mini-Game</span>
+                    <h2 class="text-xl font-bold font-cinzel text-royal-950">Guess the Christian Name!</h2>
+                    <p class="text-xs text-slate-500">Can you solve the biblical riddle?</p>
                 </div>
 
-                <div class="bg-navy-900/80 p-4 rounded-2xl border border-slate-700/60 space-y-3">
-                    <p class="text-xs text-slate-200 italic leading-relaxed">
-                        <i class="fas fa-scroll text-gold-300 mr-1.5"></i>
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                    <p class="text-xs text-slate-800 italic leading-relaxed font-serif">
+                        <i class="fas fa-scroll text-gold-600 mr-1.5"></i>
                         "I share my name with a wise man mentioned in the Bible, whose wisdom was compared with that of King Solomon. I am not Heman. Who am I?"
                     </p>
                     
                     <div class="flex space-x-2">
-                        <input id="guessInput" type="text" placeholder="Enter your name guess..." class="flex-1 bg-navy-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-gold-400">
-                        <button onclick="submitGuess()" class="px-4 py-2.5 bg-gradient-to-r from-gold-300 to-gold-500 hover:from-gold-200 hover:to-gold-400 text-navy-950 font-bold text-xs rounded-xl transition">
+                        <input id="guessInput" type="text" placeholder="Enter your name guess..." class="flex-1 bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-royal-800 shadow-sm">
+                        <button onclick="submitGuess()" class="px-4 py-2.5 bg-royal-900 hover:bg-royal-800 text-gold-300 font-bold text-xs rounded-xl transition shadow-md">
                             Vote
                         </button>
                     </div>
-                    <p id="guessFeedback" class="text-[11px] text-emerald-400 font-semibold hidden leading-relaxed"></p>
+                    <p id="guessFeedback" class="text-[11px] text-emerald-700 font-bold hidden leading-relaxed"></p>
 
-                    <div class="pt-3 border-t border-slate-800 space-y-2">
-                        <span class="text-[10px] uppercase tracking-widest font-bold text-slate-400">Live Guest Vote Board</span>
+                    <div class="pt-3 border-t border-slate-200 space-y-2">
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-slate-500">Live Guest Vote Board</span>
                         <div id="voteBoard" class="space-y-1.5"></div>
                     </div>
                 </div>
             </section>
 
             <!-- MTN MoMo Cash Registry -->
-            <section class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-5 border-t-4 border-t-gold-400">
+            <section class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-5 border-t-8 border-t-gold-500">
                 <div class="space-y-1">
-                    <span class="text-[10px] uppercase tracking-widest font-bold text-gold-300">Love Offering & Cash Gifts</span>
-                    <h2 class="text-2xl font-bold font-cinzel text-white">MTN Mobile Money (MoMo)</h2>
-                    <p class="text-xs text-slate-300 max-w-sm mx-auto">Your prayers and blessings are most cherished. For cash gifts, please use MTN MoMo below:</p>
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-royal-900">Love Offering & Cash Gifts</span>
+                    <h2 class="text-2xl font-bold font-cinzel text-royal-950">MTN Mobile Money (MoMo)</h2>
+                    <p class="text-xs text-slate-600 font-medium max-w-sm mx-auto">Your prayers and blessings are most cherished. For cash gifts, please use MTN MoMo below:</p>
                 </div>
 
-                <div class="max-w-xs mx-auto bg-navy-900/90 border border-gold-400/40 rounded-2xl p-4 space-y-3">
+                <div class="max-w-xs mx-auto bg-amber-50/80 border border-amber-300 rounded-2xl p-4 space-y-3 shadow-inner">
                     <div class="flex items-center justify-between">
-                        <span class="text-xs text-slate-400">Recipient Name:</span>
-                        <span class="text-xs font-bold text-white">Harriet Aware</span>
+                        <span class="text-xs text-slate-600 font-medium">Recipient Name:</span>
+                        <span class="text-xs font-bold text-slate-900">Harriet Aware</span>
                     </div>
                     <div class="flex items-center justify-between">
-                        <span class="text-xs text-slate-400">Network:</span>
-                        <span class="text-xs font-bold text-gold-300"><i class="fas fa-mobile-alt mr-1"></i> MTN Mobile Money</span>
+                        <span class="text-xs text-slate-600 font-medium">Network:</span>
+                        <span class="text-xs font-bold text-amber-800"><i class="fas fa-mobile-alt mr-1"></i> MTN Mobile Money</span>
                     </div>
-                    <div class="flex items-center justify-between bg-navy-950 p-2.5 rounded-xl border border-slate-800">
-                        <span id="momoNum" class="text-sm font-black font-mono text-gold-200">0244797464</span>
-                        <button onclick="copyMoMo()" class="px-3 py-1 bg-gold-400 text-navy-950 text-[10px] font-bold rounded-lg hover:bg-gold-300 transition">
-                            <i class="fas fa-copy mr-1"></i> Copy
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- RSVP Portal -->
-            <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-6">
-                <div class="text-center space-y-1">
-                    <span class="text-[10px] uppercase tracking-widest font-bold text-gold-300">Confirmation Portal</span>
-                    <h2 class="text-2xl font-bold font-cinzel text-white">RSVP & Contact Helpline</h2>
-                    <p class="text-xs text-slate-400">Reach out directly to the primary event coordinator</p>
-                </div>
-
-                <div class="max-w-sm mx-auto bg-navy-900/80 p-4 rounded-2xl border border-slate-700/60 flex items-center justify-between">
-                    <div>
-                        <h3 class="text-sm font-bold text-white">Bright</h3>
-                        <p class="text-[11px] text-slate-400">Primary RSVP Helpline</p>
-                        <p class="text-xs font-mono text-gold-300 font-semibold mt-0.5">0541907020</p>
-                    </div>
-                    <div class="flex space-x-2">
-                        <a href="tel:0541907020" class="w-9 h-9 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center hover:bg-emerald-500/40 transition">
-                            <i class="fas fa-phone text-xs"></i>
-                        </a>
-                        <a href="https://wa.me/233541907020" target="_blank" class="w-9 h-9 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center hover:bg-green-500/40 transition">
-                            <i class="fab fa-whatsapp text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <form id="rsvpForm" onsubmit="handleRSVPSubmit(event)" class="space-y-4 pt-4 border-t border-slate-700/60">
-                    <h3 class="text-sm font-bold text-white text-center font-cinzel">Confirm Your Attendance</h3>
-                    
-                    <div class="space-y-3">
-                        <input id="guestName" type="text" required placeholder="Your Full Name" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-gold-400">
-                        <input id="guestPhone" type="tel" required placeholder="Phone Number / WhatsApp" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-gold-400">
-                        
-                        <div class="space-y-2">
-                            <label class="text-[11px] text-slate-400 block font-semibold">Select Attendance Option:</label>
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                                <label class="cursor-pointer border border-slate-700 rounded-xl p-3 bg-navy-950 flex items-center space-x-2 hover:border-gold-400 transition">
-                                    <input type="radio" name="attending" value="Joyfully Attending" checked class="text-gold-400 focus:ring-0">
-                                    <span class="text-[11px] text-slate-200">Joyfully Attending</span>
-                                </label>
-                                <label class="cursor-pointer border border-slate-700 rounded-xl p-3 bg-navy-950 flex items-center space-x-2 hover:border-gold-400 transition">
-                                    <input type="radio" name="attending" value="Regretfully Absent" class="text-gold-400 focus:ring-0">
-                                    <span class="text-[11px] text-slate-200">Regretfully Absent</span>
-                                </label>
-                                <label class="cursor-pointer border border-slate-700 rounded-xl p-3 bg-navy-950 flex items-center space-x-2 hover:border-gold-400 transition">
-                                    <input type="radio" name="attending" value="Undecided" class="text-gold-400 focus:ring-0">
-                                    <span class="text-[11px] text-slate-200">Undecided</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <textarea id="guestPrayer" rows="2" placeholder="Send a Prayer Wish for Baby Boy & Parents..." class="w-full bg-navy-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-gold-400"></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full py-3 bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600 hover:from-gold-200 hover:to-gold-500 text-navy-950 font-black text-xs uppercase tracking-widest rounded-xl transition shadow-lg">
-                        Submit RSVP Confirmation
-                    </button>
-                </form>
-            </section>
-
-            <!-- Prayer Wall -->
-            <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-4">
-                <div class="text-center space-y-1">
-                    <h2 class="text-xl font-bold font-cinzel text-white">Prayer Wall & Blessings</h2>
-                    <p class="text-xs text-slate-400">Prayers and wishes sent by loved ones</p>
-                </div>
-
-                <div id="prayerWallContainer" class="space-y-3 max-h-60 overflow-y-auto pr-1"></div>
-            </section>
-
-        </div>
-    </main>
-
-    <!-- Promotional Footer -->
-    <footer class="w-full max-w-xl mx-auto text-center py-8 border-t border-slate-800/80 space-y-3">
-        <p class="text-xs text-slate-400 leading-relaxed max-w-md mx-auto">
-            For all your digital invitations for Weddings, Naming ceremonies, Corporate Programmes, kindly contact 
-            <a href="mailto:admin@lordblessconsultancy.com" class="text-gold-300 font-semibold underline hover:text-gold-200">admin@lordblessconsultancy.com</a> 
-            or visit 
-            <a href="https://www.lordblessconsultancy.com" target="_blank" class="text-gold-300 font-semibold underline hover:text-gold-200">www.lordblessconsultancy.com</a>.
-        </p>
-        <button onclick="promptAdmin()" class="text-[10px] text-slate-600 hover:text-gold-300 transition">
-            <i class="fas fa-lock mr-1"></i> Host Admin Console
-        </button>
-    </footer>
-
-    <!-- JavaScript Engine -->
-    <script>
-        const bgAudio = document.getElementById('bgMusic');
-        let isPlaying = false;
-        let synthAudioCtx = null;
-        let melodyInterval = null;
-
-        // Fallback Web Audio Synthesizer if MP3 is missing/delayed
-        function startSynthAudioFallback() {
-            if (!synthAudioCtx) {
-                synthAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (synthAudioCtx.state === 'suspended') synthAudioCtx.resume();
-
-            const notes = [261.63, 329.63, 392.00, 523.25, 440.00, 392.00, 329.63];
-            let idx = 0;
-            melodyInterval = setInterval(() => {
-                if (isPlaying && synthAudioCtx) {
-                    try {
-                        const osc = synthAudioCtx.createOscillator();
-                        const gain = synthAudioCtx.createGain();
-                        osc.type = 'sine';
-                        osc.frequency.setValueAtTime(notes[idx], synthAudioCtx.currentTime);
-                        gain.gain.setValueAtTime(0.08, synthAudioCtx.currentTime);
-                        gain.gain.exponentialRampToValueAtTime(0.0001, synthAudioCtx.currentTime + 0.6);
-                        osc.connect(gain);
-                        gain.connect(synthAudioCtx.destination);
-                        osc.start();
-                        osc.stop(synthAudioCtx.currentTime + 0.6);
-                        idx = (idx + 1) % notes.length;
-                    } catch(e){}
-                }
-            }, 500);
-        }
-
-        function playOriginalAudio() {
-            if (bgAudio) {
-                bgAudio.play().then(() => {
-                    isPlaying = true;
-                    document.getElementById('audioIcon').className = "fas fa-pause text-sm text-gold-300";
-                    document.getElementById('eqVisualizer').classList.remove('opacity-40');
-                }).catch(e => {
-                    // Fallback to synthesizer if MP3 load fails
-                    isPlaying = true;
-                    startSynthAudioFallback();
-                    document.getElementById('audioIcon').className = "fas fa-pause text-sm text-gold-300";
-                    document.getElementById('eqVisualizer').classList.remove('opacity-40');
-                });
-            }
-        }
-
-        function openEnvelope() {
-            const env = document.getElementById('envelope');
-            if (!env.classList.contains('open')) {
-                env.classList.add('open');
-                document.getElementById('envelopeInstructions').innerText = "✨ Royal Envelope Unsealed! ✨";
-                
-                // Play audio
-                playOriginalAudio();
-
-                confetti({
-                    particleCount: 80,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: ['#d4af37', '#0284c7', '#ffffff']
-                });
-
-                setTimeout(() => {
-                    document.getElementById('unveiledContent').classList.remove('hidden');
-                    setupScratchCanvas();
-                }, 600);
-            }
-        }
-
-        function toggleAudio(e) {
-            if (e) e.stopPropagation();
-            const icon = document.getElementById('audioIcon');
-            const eq = document.getElementById('eqVisualizer');
-
-            if (!isPlaying) {
-                if (bgAudio) {
-                    bgAudio.play().catch(() => startSynthAudioFallback());
-                } else {
-                    startSynthAudioFallback();
-                }
-                isPlaying = true;
-                icon.className = "fas fa-pause text-sm text-gold-300";
-                eq.classList.remove('opacity-40');
-            } else {
-                if (bgAudio) bgAudio.pause();
-                if (melodyInterval) clearInterval(melodyInterval);
-                isPlaying = false;
-                icon.className = "fas fa-music text-sm text-gold-300";
-                eq.classList.add('opacity-40');
-            }
-        }
-
-        // Scratch Seal Engine
-        let canvas, ctx, isScratching = false;
-
-        function setupScratchCanvas() {
-            canvas = document.getElementById('scratchCanvas');
-            if (!canvas) return;
-            ctx = canvas.getContext('2d');
-
-            const size = window.innerWidth >= 640 ? 310 : 280;
-            canvas.width = size;
-            canvas.height = size;
-
-            const grad = ctx.createLinearGradient(0, 0, size, size);
-            grad.addColorStop(0, '#f7e2a3');
-            grad.addColorStop(0.5, '#d4af37');
-            grad.addColorStop(1, '#8a6207');
-
-            ctx.fillStyle = grad;
-            ctx.beginPath();
-            ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
-            ctx.fill();
-
-            ctx.fillStyle = '#02050b';
-            ctx.font = 'bold 14px Cinzel, serif';
-            ctx.textAlign = 'center';
-            ctx.fillText('SCRATCH TO REVEAL', size / 2, (size / 2) - 8);
-            ctx.font = '11px Plus Jakarta Sans, sans-serif';
-            ctx.fillText('✨ ROYAL SEAL ✨', size / 2, (size / 2) + 16);
-
-            canvas.addEventListener('mousedown', () => isScratching = true);
-            canvas.addEventListener('mouseup', () => isScratching = false);
-            canvas.addEventListener('mousemove', scratch);
-            canvas.addEventListener('touchstart', () => isScratching = true);
-            canvas.addEventListener('touchend', () => isScratching = false);
-            canvas.addEventListener('touchmove', scratch);
-        }
-
-        function scratch(e) {
-            if (!isScratching) return;
-            const rect = canvas.getBoundingClientRect();
-            const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
-            const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
-
-            ctx.globalCompositeOperation = 'destination-out';
-            ctx.beginPath();
-            ctx.arc(x, y, 25, 0, Math.PI * 2);
-            ctx.fill();
-
-            checkScratchPercentage();
-        }
-
-        function checkScratchPercentage() {
-            const size = canvas.width;
-            const imageData = ctx.getImageData(0, 0, size, size);
-            const pixels = imageData.data;
-            let clearPixels = 0;
-
-            for (let i = 3; i < pixels.length; i += 4) {
-                if (pixels[i] === 0) clearPixels++;
-            }
-
-            const percentage = (clearPixels / (pixels.length / 4)) * 100;
-            if (percentage > 35) {
-                confetti({
-                    particleCount: 100,
-                    spread: 80,
-                    origin: { y: 0.6 },
-                    colors: ['#d4af37', '#0284c7', '#ffffff']
-                });
-                canvas.style.pointerEvents = 'none';
-                canvas.style.opacity = '0';
-                document.getElementById('scratchInstructions').innerText = "✨ Seal Unveiled Successfully! ✨";
-            }
-        }
-
-        // Countdown Timer
-        const eventDate = new Date('November 1, 2026 08:30:00 GMT').getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const diff = eventDate - now;
-
-            if (diff > 0) {
-                document.getElementById('cdDays').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-                document.getElementById('cdHours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-                document.getElementById('cdMins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-                document.getElementById('cdSecs').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
-            }
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // Vote Board - Completely Empty for Real Guest Inputs
-        let nameVotes = {};
-
-        function renderVotes() {
-            const board = document.getElementById('voteBoard');
-            board.innerHTML = '';
-            const total = Object.values(nameVotes).reduce((a, b) => a + b, 0);
-
-            if (total === 0) {
-                board.innerHTML = `<p class="text-xs text-slate-400 italic text-center py-2">No votes submitted yet. Be the first to guess!</p>`;
-                return;
-            }
-
-            Object.entries(nameVotes).forEach(([name, count]) => {
-                const pct = Math.round((count / total) * 100);
-                const row = document.createElement('div');
-                row.className = "space-y-1";
-                row.innerHTML = `
-                    <div class="flex justify-between text-[11px]">
-                        <span class="text-white font-semibold">${name}</span>
-                        <span class="text-gold-300 font-mono">${count} votes (${pct}%)</span>
-                    </div>
-                    <div class="w-full h-1.5 bg-navy-950 rounded-full overflow-hidden">
-                        <div class="h-full bg-gradient-to-r from-gold-400 to-gold-200 rounded-full" style="width: ${pct}%"></div>
-                    </div>
-                `;
-                board.appendChild(row);
-            });
-        }
-
-        function submitGuess() {
-            const val = document.getElementById('guessInput').value.trim();
-            if (!val) return;
-
-            const capitalized = val.charAt(0).toUpperCase() + val.slice(1).toLowerCase();
-            nameVotes[capitalized] = (nameVotes[capitalized] || 0) + 1;
-            renderVotes();
-
-            confetti({ particleCount: 40, spread: 50, origin: { y: 0.7 } });
-            const fb = document.getElementById('guessFeedback');
-            fb.innerText = `✨ Thank you! Your vote for "${capitalized}" has been recorded on the live board.`;
-            fb.classList.remove('hidden');
-            document.getElementById('guessInput').value = '';
-        }
-
-        // Copy MoMo
-        function copyMoMo() {
-            const num = document.getElementById('momoNum').innerText;
-            navigator.clipboard.writeText(num);
-            alert("MTN Mobile Money Number copied: " + num);
-        }
-
-        // RSVP & Prayer Wall
-        function getStoredRSVPs() {
-            const stored = localStorage.getItem('aware_baby_rsvps');
-            return stored ? JSON.parse(stored) : [];
-        }
-
-        function renderPrayerWall() {
-            const container = document.getElementById('prayerWallContainer');
-            const items = getStoredRSVPs();
-            container.innerHTML = '';
-
-            if (items.length === 0) {
-                container.innerHTML = `<p class="text-xs text-slate-400 italic text-center py-2">No prayer wishes submitted yet. Be the first to leave a blessing!</p>`;
-                return;
-            }
-
-            items.forEach(item => {
-                const div = document.createElement('div');
-                div.className = "bg-navy-900/60 p-3 rounded-xl border border-slate-700/50 space-y-1";
-                div.innerHTML = `
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-bold text-gold-300">${item.name}</span>
-                        <span class="text-[9px] text-slate-500">Blessing</span>
-                    </div>
-                    <p class="text-xs text-slate-300 italic">"${item.wish}"</p>
-                `;
-                container.appendChild(div);
-            });
-        }
-
-        function handleRSVPSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('guestName').value.trim();
-            const phone = document.getElementById('guestPhone').value.trim();
-            const attending = document.querySelector('input[name="attending"]:checked').value;
-            const wish = document.getElementById('guestPrayer').value.trim() || "God bless baby boy and the Aware family!";
-
-            const newRSVP = { name, phone, attending, wish };
-            const currentList = getStoredRSVPs();
-            currentList.unshift(newRSVP);
-
-            localStorage.setItem('aware_baby_rsvps', JSON.stringify(currentList));
-            renderPrayerWall();
-
-            confetti({ particleCount: 60, spread: 60, origin: { y: 0.8 } });
-            alert(`Thank you ${name}! Your RSVP confirmation has been received.`);
-            document.getElementById('rsvpForm').reset();
-        }
-
-        // Admin Console
-        function promptAdmin() {
-            const pin = prompt("Enter Host Passcode:");
-            if (pin === "2026" || pin === "1234") {
-                const list = getStoredRSVPs();
-                let msg = "--- HOST RSVP GUEST LIST ---\n\n";
-                if (list.length === 0) {
-                    msg += "No guest RSVPs received yet.";
-                } else {
-                    list.forEach((r, i) => {
-                        msg += `${i+1}. ${r.name} (${r.phone}) - ${r.attending}\n   Wish: ${r.wish}\n\n`;
-                    });
-                }
-                alert(msg);
-            } else if (pin !== null) {
-                alert("Incorrect Passcode.");
-            }
-        }
-
-        renderVotes();
-        renderPrayerWall();
-    </script>
-</body>
-</html>
+                    <div class="flex items-center justify-between bg-white p-2.5 rounded-xl border border-amber-300 shadow-sm">
+                        <span id="momoNum" class="text-sm font-black font-mono text-royal-950">0244797464</span>
+                        <button onclick="copyMoMo()" class="px-3 py-1 bg-royal-900 text-gold-300 text-[10px] font-bold rounded-lg hover:bg-royal-800 transition">
+                            <i class="fas fa-copy mr-1"></i>
