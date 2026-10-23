@@ -236,7 +236,7 @@
                 <span class="text-white text-[10px] sm:text-xs tracking-widest font-bold uppercase">Royal Invitation</span>
             </div>
             <h1 class="text-3xl sm:text-4xl font-black font-cinzel gold-gradient-text tracking-wide leading-tight drop-shadow-md">
-                MR. & MRS. AWARE
+                MR. & MRS. EMMANUEL AWARE
             </h1>
             <p class="text-xs sm:text-sm text-sky-100 font-serif italic max-w-md mx-auto leading-relaxed">
                 Cordially request the honour of your presence to celebrate...
@@ -509,4 +509,407 @@
                     <div class="flex items-center justify-between bg-white p-2.5 rounded-xl border border-amber-300 shadow-sm">
                         <span id="momoNum" class="text-sm font-black font-mono text-royal-950">0244797464</span>
                         <button onclick="copyMoMo()" class="px-3 py-1 bg-royal-900 text-gold-300 text-[10px] font-bold rounded-lg hover:bg-royal-800 transition">
-                            <i class="fas fa-copy mr-1"></i>
+                            <i class="fas fa-copy mr-1"></i> Copy
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RSVP Portal -->
+            <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-6">
+                <div class="text-center space-y-1">
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-royal-900">Confirmation Portal</span>
+                    <h2 class="text-2xl font-bold font-cinzel text-royal-950">RSVP & Contact Helpline</h2>
+                    <p class="text-xs text-slate-500">Reach out directly to the primary event coordinator</p>
+                </div>
+
+                <div class="max-w-sm mx-auto bg-sky-50 p-4 rounded-2xl border border-sky-200 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-900">Bright</h3>
+                        <p class="text-[11px] text-slate-500 font-medium">Primary RSVP Helpline</p>
+                        <p class="text-xs font-mono text-royal-900 font-bold mt-0.5">0541907020</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <a href="tel:0541907020" class="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-700 transition shadow-md">
+                            <i class="fas fa-phone text-xs"></i>
+                        </a>
+                        <a href="https://wa.me/233541907020" target="_blank" class="w-9 h-9 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition shadow-md">
+                            <i class="fab fa-whatsapp text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <form id="rsvpForm" onsubmit="handleRSVPSubmit(event)" class="space-y-4 pt-4 border-t border-slate-200">
+                    <h3 class="text-sm font-bold text-royal-950 text-center font-cinzel">Confirm Your Attendance</h3>
+                    
+                    <div class="space-y-3">
+                        <input id="guestName" type="text" required placeholder="Your Full Name" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-royal-800 shadow-sm">
+                        <input id="guestPhone" type="tel" required placeholder="Phone Number / WhatsApp" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-royal-800 shadow-sm">
+                        
+                        <div class="space-y-2">
+                            <label class="text-[11px] text-slate-600 block font-bold">Select Attendance Option:</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                                <label class="cursor-pointer border border-slate-300 rounded-xl p-3 bg-white flex items-center space-x-2 hover:border-royal-800 transition shadow-sm">
+                                    <input type="radio" name="attending" value="Joyfully Attending" checked class="text-royal-800 focus:ring-0">
+                                    <span class="text-[11px] text-slate-800 font-medium">Joyfully Attending</span>
+                                </label>
+                                <label class="cursor-pointer border border-slate-300 rounded-xl p-3 bg-white flex items-center space-x-2 hover:border-royal-800 transition shadow-sm">
+                                    <input type="radio" name="attending" value="Regretfully Absent" class="text-royal-800 focus:ring-0">
+                                    <span class="text-[11px] text-slate-800 font-medium">Regretfully Absent</span>
+                                </label>
+                                <label class="cursor-pointer border border-slate-300 rounded-xl p-3 bg-white flex items-center space-x-2 hover:border-royal-800 transition shadow-sm">
+                                    <input type="radio" name="attending" value="Undecided" class="text-royal-800 focus:ring-0">
+                                    <span class="text-[11px] text-slate-800 font-medium">Undecided</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <textarea id="guestPrayer" rows="2" placeholder="Send a Prayer Wish for Baby Boy & Parents..." class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-royal-800 shadow-sm"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3 bg-royal-900 hover:bg-royal-800 text-gold-300 font-black text-xs uppercase tracking-widest rounded-xl transition shadow-lg">
+                        Submit RSVP Confirmation
+                    </button>
+                </form>
+            </section>
+
+            <!-- Prayer Wall -->
+            <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-4">
+                <div class="text-center space-y-1">
+                    <h2 class="text-xl font-bold font-cinzel text-royal-950">Prayer Wall & Blessings</h2>
+                    <p class="text-xs text-slate-500 font-medium">Prayers and wishes sent by loved ones</p>
+                </div>
+
+                <div id="prayerWallContainer" class="space-y-3 max-h-60 overflow-y-auto pr-1"></div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Promotional Footer -->
+    <footer class="w-full max-w-xl mx-auto text-center py-8 border-t border-white/20 space-y-3">
+        <p class="text-xs text-sky-100 leading-relaxed max-w-md mx-auto">
+            For all your digital invitations for Weddings, Naming ceremonies, Corporate Programmes, kindly contact 
+            <a href="mailto:admin@lordblessconsultancy.com" class="text-gold-300 font-semibold underline hover:text-white">admin@lordblessconsultancy.com</a> 
+            or visit 
+            <a href="https://www.lordblessconsultancy.com" target="_blank" class="text-gold-300 font-semibold underline hover:text-white">www.lordblessconsultancy.com</a>.
+        </p>
+        <button onclick="promptAdmin()" class="text-[10px] text-sky-200 hover:text-white transition">
+            <i class="fas fa-lock mr-1"></i> Host Admin Console
+        </button>
+    </footer>
+
+    <!-- JavaScript Engine -->
+    <script>
+        const bgAudio = document.getElementById('bgMusic');
+        let isPlaying = false;
+        let synthAudioCtx = null;
+        let melodyInterval = null;
+
+        // Fallback Web Audio Synthesizer if MP3 is missing/delayed
+        function startSynthAudioFallback() {
+            if (!synthAudioCtx) {
+                synthAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (synthAudioCtx.state === 'suspended') synthAudioCtx.resume();
+
+            const notes = [261.63, 329.63, 392.00, 523.25, 440.00, 392.00, 329.63];
+            let idx = 0;
+            melodyInterval = setInterval(() => {
+                if (isPlaying && synthAudioCtx) {
+                    try {
+                        const osc = synthAudioCtx.createOscillator();
+                        const gain = synthAudioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(notes[idx], synthAudioCtx.currentTime);
+                        gain.gain.setValueAtTime(0.08, synthAudioCtx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.0001, synthAudioCtx.currentTime + 0.6);
+                        osc.connect(gain);
+                        gain.connect(synthAudioCtx.destination);
+                        osc.start();
+                        osc.stop(synthAudioCtx.currentTime + 0.6);
+                        idx = (idx + 1) % notes.length;
+                    } catch(e){}
+                }
+            }, 500);
+        }
+
+        function playOriginalAudio() {
+            if (bgAudio) {
+                bgAudio.play().then(() => {
+                    isPlaying = true;
+                    document.getElementById('audioIcon').className = "fas fa-pause text-sm text-gold-300";
+                    document.getElementById('eqVisualizer').classList.remove('opacity-40');
+                }).catch(e => {
+                    // Fallback to synthesizer if MP3 load fails
+                    isPlaying = true;
+                    startSynthAudioFallback();
+                    document.getElementById('audioIcon').className = "fas fa-pause text-sm text-gold-300";
+                    document.getElementById('eqVisualizer').classList.remove('opacity-40');
+                });
+            }
+        }
+
+        function openEnvelope() {
+            const env = document.getElementById('envelope');
+            if (!env.classList.contains('open')) {
+                env.classList.add('open');
+                document.getElementById('envelopeInstructions').innerText = "✨ Royal Envelope Unsealed! ✨";
+                
+                // Play audio
+                playOriginalAudio();
+
+                confetti({
+                    particleCount: 80,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#d4af37', '#0284c7', '#ffffff']
+                });
+
+                setTimeout(() => {
+                    document.getElementById('unveiledContent').classList.remove('hidden');
+                    setupScratchCanvas();
+                }, 600);
+            }
+        }
+
+        function toggleAudio(e) {
+            if (e) e.stopPropagation();
+            const icon = document.getElementById('audioIcon');
+            const eq = document.getElementById('eqVisualizer');
+
+            if (!isPlaying) {
+                if (bgAudio) {
+                    bgAudio.play().catch(() => startSynthAudioFallback());
+                } else {
+                    startSynthAudioFallback();
+                }
+                isPlaying = true;
+                icon.className = "fas fa-pause text-sm text-gold-300";
+                eq.classList.remove('opacity-40');
+            } else {
+                if (bgAudio) bgAudio.pause();
+                if (melodyInterval) clearInterval(melodyInterval);
+                isPlaying = false;
+                icon.className = "fas fa-music text-sm text-gold-300";
+                eq.classList.add('opacity-40');
+            }
+        }
+
+        // Scratch Seal Engine
+        let canvas, ctx, isScratching = false;
+
+        function setupScratchCanvas() {
+            canvas = document.getElementById('scratchCanvas');
+            if (!canvas) return;
+            ctx = canvas.getContext('2d');
+
+            const size = window.innerWidth >= 640 ? 310 : 280;
+            canvas.width = size;
+            canvas.height = size;
+
+            const grad = ctx.createLinearGradient(0, 0, size, size);
+            grad.addColorStop(0, '#f7e2a3');
+            grad.addColorStop(0.5, '#d4af37');
+            grad.addColorStop(1, '#8a6207');
+
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#02050b';
+            ctx.font = 'bold 14px Cinzel, serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('SCRATCH TO REVEAL', size / 2, (size / 2) - 8);
+            ctx.font = '11px Plus Jakarta Sans, sans-serif';
+            ctx.fillText('✨ ROYAL SEAL ✨', size / 2, (size / 2) + 16);
+
+            canvas.addEventListener('mousedown', () => isScratching = true);
+            canvas.addEventListener('mouseup', () => isScratching = false);
+            canvas.addEventListener('mousemove', scratch);
+            canvas.addEventListener('touchstart', () => isScratching = true);
+            canvas.addEventListener('touchend', () => isScratching = false);
+            canvas.addEventListener('touchmove', scratch);
+        }
+
+        function scratch(e) {
+            if (!isScratching) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+            const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 25, 0, Math.PI * 2);
+            ctx.fill();
+
+            checkScratchPercentage();
+        }
+
+        function checkScratchPercentage() {
+            const size = canvas.width;
+            const imageData = ctx.getImageData(0, 0, size, size);
+            const pixels = imageData.data;
+            let clearPixels = 0;
+
+            for (let i = 3; i < pixels.length; i += 4) {
+                if (pixels[i] === 0) clearPixels++;
+            }
+
+            const percentage = (clearPixels / (pixels.length / 4)) * 100;
+            if (percentage > 35) {
+                confetti({
+                    particleCount: 100,
+                    spread: 80,
+                    origin: { y: 0.6 },
+                    colors: ['#d4af37', '#0284c7', '#ffffff']
+                });
+                canvas.style.pointerEvents = 'none';
+                canvas.style.opacity = '0';
+                document.getElementById('scratchInstructions').innerText = "✨ Seal Unveiled Successfully! ✨";
+            }
+        }
+
+        // Countdown Timer
+        const eventDate = new Date('November 1, 2026 08:30:00 GMT').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = eventDate - now;
+
+            if (diff > 0) {
+                document.getElementById('cdDays').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById('cdHours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById('cdMins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById('cdSecs').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Vote Board - Completely Empty for Real Guest Inputs
+        let nameVotes = {};
+
+        function renderVotes() {
+            const board = document.getElementById('voteBoard');
+            board.innerHTML = '';
+            const total = Object.values(nameVotes).reduce((a, b) => a + b, 0);
+
+            if (total === 0) {
+                board.innerHTML = `<p class="text-xs text-slate-500 italic text-center py-2 font-medium">No votes submitted yet. Be the first to guess!</p>`;
+                return;
+            }
+
+            Object.entries(nameVotes).forEach(([name, count]) => {
+                const pct = Math.round((count / total) * 100);
+                const row = document.createElement('div');
+                row.className = "space-y-1";
+                row.innerHTML = `
+                    <div class="flex justify-between text-[11px]">
+                        <span class="text-slate-900 font-bold">${name}</span>
+                        <span class="text-royal-900 font-mono font-bold">${count} votes (${pct}%)</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-royal-700 to-royal-900 rounded-full" style="width: ${pct}%"></div>
+                    </div>
+                `;
+                board.appendChild(row);
+            });
+        }
+
+        function submitGuess() {
+            const val = document.getElementById('guessInput').value.trim();
+            if (!val) return;
+
+            const capitalized = val.charAt(0).toUpperCase() + val.slice(1).toLowerCase();
+            nameVotes[capitalized] = (nameVotes[capitalized] || 0) + 1;
+            renderVotes();
+
+            confetti({ particleCount: 40, spread: 50, origin: { y: 0.7 } });
+            const fb = document.getElementById('guessFeedback');
+            fb.innerText = `✨ Thank you! Your vote for "${capitalized}" has been recorded on the live board.`;
+            fb.classList.remove('hidden');
+            document.getElementById('guessInput').value = '';
+        }
+
+        // Copy MoMo
+        function copyMoMo() {
+            const num = document.getElementById('momoNum').innerText;
+            navigator.clipboard.writeText(num);
+            alert("MTN Mobile Money Number copied: " + num);
+        }
+
+        // RSVP & Prayer Wall
+        function getStoredRSVPs() {
+            const stored = localStorage.getItem('aware_baby_rsvps');
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        function renderPrayerWall() {
+            const container = document.getElementById('prayerWallContainer');
+            const items = getStoredRSVPs();
+            container.innerHTML = '';
+
+            if (items.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-500 italic text-center py-2 font-medium">No prayer wishes submitted yet. Be the first to leave a blessing!</p>`;
+                return;
+            }
+
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "bg-sky-50 p-3 rounded-xl border border-sky-200 space-y-1";
+                div.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-royal-900">${item.name}</span>
+                        <span class="text-[9px] text-slate-500 font-medium">Blessing</span>
+                    </div>
+                    <p class="text-xs text-slate-700 italic font-medium">"${item.wish}"</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function handleRSVPSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('guestName').value.trim();
+            const phone = document.getElementById('guestPhone').value.trim();
+            const attending = document.querySelector('input[name="attending"]:checked').value;
+            const wish = document.getElementById('guestPrayer').value.trim() || "God bless baby boy and the Aware family!";
+
+            const newRSVP = { name, phone, attending, wish };
+            const currentList = getStoredRSVPs();
+            currentList.unshift(newRSVP);
+
+            localStorage.setItem('aware_baby_rsvps', JSON.stringify(currentList));
+            renderPrayerWall();
+
+            confetti({ particleCount: 60, spread: 60, origin: { y: 0.8 } });
+            alert(`Thank you ${name}! Your RSVP confirmation has been received.`);
+            document.getElementById('rsvpForm').reset();
+        }
+
+        // Admin Console
+        function promptAdmin() {
+            const pin = prompt("Enter Host Passcode:");
+            if (pin === "2026" || pin === "1234") {
+                const list = getStoredRSVPs();
+                let msg = "--- HOST RSVP GUEST LIST ---\n\n";
+                if (list.length === 0) {
+                    msg += "No guest RSVPs received yet.";
+                } else {
+                    list.forEach((r, i) => {
+                        msg += `${i+1}. ${r.name} (${r.phone}) - ${r.attending}\n   Wish: ${r.wish}\n\n`;
+                    });
+                }
+                alert(msg);
+            } else if (pin !== null) {
+                alert("Incorrect Passcode.");
+            }
+        }
+
+        renderVotes();
+        renderPrayerWall();
+    </script>
+</body>
+</html>
